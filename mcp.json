@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "telltell": {
+      "type": "streamable-http",
+      "url": "https://telltell-web-789927640952.us-east1.run.app/mcp"
+    }
+  }
+}
