@@ -8,33 +8,45 @@ settings through your TellTell Admin account.
 This package targets Agent Plugins 1.0.0 and TellTell’s remote MCP service. Grok
 Bot is the first launch target. It contains no API keys or account records.
 
-## Review status — September 18, 2026
+## Availability and review status
 
-This is a pre-release submission, not an installable production release yet. The
-production URL in `mcp.json` currently returns HTTP 404 because production
-activation remains pending. Installing this package unchanged will not connect.
-The staging service responds with an OAuth challenge, and its discovery and
-OpenAPI endpoints are reachable. Successful sign-in and basic reads have been
-verified in Cursor desktop. On September 18, native Grok Bot completed OAuth,
-discovered eight read-only tools, and successfully read connection context and
-groups in an owner-confirmed synthetic staging account. Granted permissions were
-`people:read` and `groups:read`; bulk edits were disabled.
+TellTell’s production MCP service is available to Admins across TellTell
+accounts. The endpoint in `mcp.json` requires OAuth. On September 18, 2026,
+production passed checks for MCP authentication challenges, protected-resource
+discovery, OAuth issuer discovery, and its published OpenAPI contract. Settings
+→ Connections is available in the production app.
 
-The publisher application was submitted on September 11. Marketplace approval
-and receipt confirmation remain pending. Cursor support directed application
-follow-up to **marketplace-publishing@cursor.com**. We will replace this status
-with verified production and installation evidence before requesting launch.
+The Cursor Marketplace publisher application was submitted on September 11 and
+listing approval remains pending. Marketplace installation is a separate step
+from connecting the hosted MCP service directly. Application follow-up goes to
+**marketplace-publishing@cursor.com**.
 
-## Install and connect after release
+Native Grok Bot completed OAuth, discovered eight read-only tools, and read
+connection context and groups in an owner-confirmed synthetic staging account on
+September 18. That test granted only `people:read` and `groups:read`, with bulk
+edits disabled. It verifies native Grok Bot compatibility for that staging read
+flow; it does not claim Marketplace approval or production write testing.
 
-After marketplace publication, open Grok Bot’s plugin picker, select TellTell,
-and follow **Connect**. Sign in to TellTell, check the account, and select the
-permissions you want to grant. Installation follows the official
+## Connect now
+
+Ask your Grok Bot:
+
+> Add this MCP server: https://telltell-web-789927640952.us-east1.run.app/mcp .
+> Name it TellTell and use its OAuth discovery and automatic client
+> registration. Present the sign-in link for me to complete. Start with People
+> and groups read permissions if scope selection is supported. After I
+> authorize, list the tools and check connection permissions; wait before
+> reading or changing account data.
+
+Complete the connect card, sign in as a TellTell Admin, confirm the intended
+account, and select the permissions you want to grant. Use the client’s OAuth
+flow; do not supply a manual client ID, guess a callback address, or put a
+static bearer token in `mcp.json`. Start with read permissions and confirm bulk
+edits are off before trying account reads.
+
+After Marketplace approval and publication, you can instead open Grok Bot’s
+plugin picker, select TellTell, and follow **Connect**. See the official
 [Grok Bot plugin guide](https://cursor.com/help/grok-bot/connect-plugins).
-
-The remote MCP address is
-`https://telltell-web-789927640952.us-east1.run.app/mcp`. Use the client’s OAuth
-connection flow; never add a static bearer token to `mcp.json`.
 
 Ask “List my TellTell groups” or “Update Alex’s name to Alex Chen.” For a roster
 import, review the preview and approve the proposed changes in the conversation.
