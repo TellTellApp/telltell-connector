@@ -15,7 +15,10 @@ production URL in `mcp.json` currently returns HTTP 404 because production
 activation remains pending. Installing this package unchanged will not connect.
 The staging service responds with an OAuth challenge, and its discovery and
 OpenAPI endpoints are reachable. Successful sign-in and basic reads have been
-verified in Cursor desktop; native Grok Bot verification remains pending.
+verified in Cursor desktop. On September 18, native Grok Bot completed OAuth,
+discovered eight read-only tools, and successfully read connection context and
+groups in an owner-confirmed synthetic staging account. Granted permissions were
+`people:read` and `groups:read`; bulk edits were disabled.
 
 The publisher application was submitted on September 11. Marketplace approval
 and receipt confirmation remain pending. Cursor support directed application
@@ -72,11 +75,13 @@ there is no custom-connector settings form. Send:
 > test. Present the authorization link for me to complete. Do not change
 > records, run jobs, or send email.
 
-Complete authorization with the designated staging account, then send a new
-message asking to list TellTell tools and read groups. The complete native Grok
-Bot OAuth/tool flow is still being verified; this documented setup route is not
-a claim of marketplace approval. A private skill supplies workflow instructions
-and does not replace the authenticated connector.
+Use native OAuth discovery and client-managed dynamic registration; do not
+manually inject a client ID or guess callback addresses. Complete authorization
+with the designated staging account, then request tool discovery, connection
+context, and a bounded groups read. This flow passed staging read-only testing;
+write, refresh, revocation, and Marketplace installation checks remain separate.
+A private skill supplies workflow instructions and does not replace the
+authenticated connector.
 
 A local Cursor installation does not carry over into Grok Bot. Grok Bot's cloud
 computer must be able to reach the MCP server over public HTTPS; `localhost` on
