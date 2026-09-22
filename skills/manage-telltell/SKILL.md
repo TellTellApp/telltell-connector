@@ -10,6 +10,17 @@ Use the TellTell MCP tools and start with `telltell_context_get` to establish
 the connected account, permissions, and bulk policy. TellTell is a group email
 service: membership changes can send configured welcome messages.
 
+Inspect tool schemas and use read-only connection/context tools for diagnostics.
+Never create placeholder people, run schema-test mutations, or send test email
+to check connectivity. Only make changes the user requested. Intentional
+mutation tests belong only in an explicitly authorized synthetic test account
+and scope. Person relationship fields have distinct primary (`forwardLabel`) and
+reciprocal (`reverseLabel`) labels, such as Parent and Child. `value` and
+`relationshipPersonIds` use the primary label; `reverseValue` and
+`reverseRelationshipPersonIds` use the reciprocal label. If a label or direction
+is missing from the returned data, ask for clarification; do not invent labels
+or assume one wording applies both ways.
+
 Read current records before changing them. Resolve ambiguous names to stable
 IDs, preserve unrelated fields, and use the returned resource versions. Generate
 one idempotency key per intended mutation. After a lost response or transient

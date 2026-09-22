@@ -35,8 +35,9 @@ Ask your Grok Bot:
 > Name it TellTell and use its OAuth discovery and automatic client
 > registration. Present the sign-in link for me to complete. Start with People
 > and groups read permissions if scope selection is supported. After I
-> authorize, list the tools and check connection permissions; wait before
-> reading or changing account data.
+> authorize, inspect the tool schemas and call the read-only connection context
+> tool. Do not create placeholder contacts, send test email, or change account
+> data to check connectivity.
 
 Complete the connect card, sign in as a TellTell Admin, confirm the intended
 account, and select the permissions you want to grant. Use the client’s OAuth
@@ -57,6 +58,49 @@ Connections use current account entitlements with no additional connector charge
 in v1. Revoke access in **Settings → Connections**. Completed updates and queued
 welcome messages remain effective after revocation.
 
+## Direct connections from other tools
+
+The same hosted MCP supports direct configuration without Marketplace approval.
+These are setup recipes, not a claim that every native client has completed
+TellTell compatibility testing.
+
+Claude Code:
+
+```sh
+claude mcp add --transport http telltell https://telltell-web-789927640952.us-east1.run.app/mcp
+```
+
+Run `/mcp` in Claude Code and authenticate TellTell.
+
+Codex:
+
+```sh
+codex mcp add telltell --url https://telltell-web-789927640952.us-east1.run.app/mcp
+codex mcp login telltell
+```
+
+Cursor: add the following server to your existing MCP configuration, preserving
+any other entries, then enable it and sign in:
+
+```json
+{
+  "mcpServers": {
+    "telltell": {
+      "url": "https://telltell-web-789927640952.us-east1.run.app/mcp"
+    }
+  }
+}
+```
+
+Use automatic OAuth registration in each client; leave client ID and secret
+overrides empty. Each user chooses their TellTell account and scopes. Local
+configuration does not automatically configure a cloud agent. Public directory
+listings have separate provider-specific review processes.
+
+Official setup: [Claude Code](https://code.claude.com/docs/en/mcp),
+[Codex](https://learn.chatgpt.com/docs/extend/mcp?surface=cli),
+[Cursor](https://cursor.com/docs/mcp).
+
 ## Staging and local compatibility testing
 
 For designated testers using synthetic TellTell staging accounts, the hosted
@@ -68,8 +112,9 @@ https://telltell-web-342964311037.us-east1.run.app/mcp
 
 Use the client's OAuth connection flow with a staging Admin account. Start with
 People/groups read permissions and leave bulk edits disabled. First ask it to
-list the available TellTell tools and read the synthetic account's groups; do
-not enable write access until the connection has been verified.
+inspect TellTell tool schemas and read the synthetic account's connection
+context; do not create placeholder contacts, send test email, or enable write
+access until the connection has been verified.
 
 **Cursor desktop:** a local copy can use the staging URL with both the plugin
 and MCP server named `telltell-staging`. Load it from
@@ -84,7 +129,8 @@ there is no custom-connector settings form. Send:
 
 > Add this MCP server: https://telltell-web-342964311037.us-east1.run.app/mcp .
 > Name it telltell-staging and use its OAuth flow. This is a synthetic staging
-> test. Present the authorization link for me to complete. Do not change
+> test. Present the authorization link for me to complete. Inspect tool schemas
+> and connection context only. Do not create placeholder contacts, change
 > records, run jobs, or send email.
 
 Use native OAuth discovery and client-managed dynamic registration; do not
@@ -102,6 +148,16 @@ your own laptop is not that computer.
 No static tokens, application source, or customer records belong in this
 package. HTTP reachability and local SDK tests do not establish Grok Bot
 certification.
+
+## Package synchronization
+
+This package is maintained in TellTell's application repository and exported to
+this public repository. Version 1.0.1 includes the no-placeholder-record
+workflow and both relationship labels. Exported releases include
+`package-integrity.json` with SHA-256 hashes of every package file; the public
+PR records the source commit. Verify the file set and hashes against a fresh
+production export before merging a synchronization PR. A checksum records
+package contents, not provider approval or successful native-client testing.
 
 ## License
 

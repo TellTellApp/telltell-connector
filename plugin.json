@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "telltell",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Manage your TellTell People directory, groups, custom fields, and account settings from Grok Bot.",
   "author": { "name": "TellTell", "url": "https://telltell.app" },
   "homepage": "https://telltell.app",
