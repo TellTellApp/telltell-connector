@@ -1,0 +1,14 @@
+{
+  "format": 1,
+  "environment": "production",
+  "files": {
+    "LICENSE": "d6d2af71b885872f83963e8858bc56ad4bb35a010823b8a9e8864674668ac25a",
+    "NOTICE.md": "ecd9fb70bd6a66b82b11a5b1e1f3008f9efaf5fba6fb245fa603e0dfe3460d96",
+    "README.md": "319927041e8e9103da1f029f2eec511ec5771643ab96059ef9f5ea46bf455e05",
+    "assets/telltell-logomark.svg": "dee3f126be7939b8da128b716ec453ee39347bfd6d4c4f4bc3a0a09665779c48",
+    "assets/telltell-logomark.webp": "2d8f09e3daa699d6a2d6c34dbac9d9021a78abe3f664d96bb58adce16d2a9e4b",
+    "mcp.json": "32e7fa05a336d007fa810b9c319447116ca021e0d3866a301288019902e8e866",
+    "plugin.json": "5eae691f2e73da685660e2eb26c1a971141415ac7807ce0b2a3cc8d17d162e93",
+    "skills/manage-telltell/SKILL.md": "346fb9560bbb8a3e1ef007c3c7eddd1c62dbc4d9e5cb8729820e843df19e3a51"
+  }
+}
